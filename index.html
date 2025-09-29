@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MovieMobs - Case Study</title>
     <style>
+      /* ---------- Base reset & typography ---------- */
       * {
         margin: 0;
         padding: 0;
@@ -24,16 +25,14 @@
         min-height: 11in;
         margin: 0 auto 0.5in auto;
         padding: 0.5in 0.75in;
-        background: white;
+        background: #fff;
         page-break-after: always;
         position: relative;
       }
-
       .page:last-child {
         page-break-after: avoid;
       }
 
-      /* Page 1 - Hero Section */
       .hero-container {
         text-align: center;
         margin-bottom: 2rem;
@@ -48,16 +47,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-size: 1rem;
         margin: 0 auto 1rem;
         border: 3px dashed #ccc;
-        text-align: center;
         padding: 0;
-        font-weight: 500;
         overflow: hidden;
       }
-
       .hero-image img {
         width: 100%;
         height: 100%;
@@ -73,7 +67,6 @@
         margin-bottom: 0.5rem;
         letter-spacing: -1px;
       }
-
       .subtitle {
         font-size: 1.3rem;
         color: #718096;
@@ -85,60 +78,64 @@
         font-size: 1rem;
         line-height: 1.6;
         color: #4a5568;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
         padding: 1.5rem;
         background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
         border-radius: 12px;
         border-left: 5px solid #20504b;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        text-align: justify;
       }
 
-      .project-details-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        margin: 1rem 0 2rem 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        border-radius: 8px;
-        overflow: visible;
+      /* ---------- Project details ---------- */
+      .project-details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem auto;
+        max-width: 100%;
+        padding: 0 1rem;
       }
-
-      .project-details-table th {
-        background: #20504b;
-        color: white;
-        padding: 0.75rem 0.5rem;
-        font-weight: 600;
+      .detail-card {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         text-align: center;
-        font-size: 0.9rem;
+        border-top: 4px solid #20504b;
+        transition: transform 0.2s;
       }
-
-      .project-details-table th:first-child {
-        border-top-left-radius: 8px;
+      .detail-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
       }
-
-      .project-details-table th:last-child {
-        border-top-right-radius: 8px;
+      .detail-card h3 {
+        color: #20504b;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding-left: 0;
       }
-
-      .project-details-table td {
-        padding: 1rem 0.75rem;
-        text-align: center;
-        background: white;
-        border-bottom: 1px solid #e2e8f0;
-        font-size: 0.85rem;
-        color: #4a5568;
-        vertical-align: top;
-        line-height: 1.6;
+      .detail-card h3::before {
+        display: none;
       }
-
-      .project-details-table td strong {
+      .detail-card .detail-title {
         display: block;
-        margin-bottom: 0.5rem;
-        font-size: 0.95rem;
+        font-weight: 700;
+        font-size: 1rem;
         color: #2d3748;
+        margin-bottom: 0.75rem;
+      }
+      .detail-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #4a5568;
+        margin: 0.25rem 0;
       }
 
-      /* Content Pages */
+      /* ---------- Headings & text ---------- */
       h2 {
         font-size: 2rem;
         font-weight: 700;
@@ -147,15 +144,14 @@
         border-bottom: 3px solid #20504b;
         padding-bottom: 0.75rem;
       }
-
       h3 {
         font-size: 1.4rem;
         font-weight: 600;
         color: #4a5568;
         margin: 2rem 0 1rem 0;
         position: relative;
+        padding-left: 1rem;
       }
-
       h3::before {
         content: "";
         position: absolute;
@@ -167,16 +163,12 @@
         background: #20504b;
         border-radius: 2px;
       }
-
-      h3 {
-        padding-left: 1rem;
-      }
-
       p {
         margin-bottom: 1.25rem;
         font-size: 1rem;
         line-height: 1.8;
         color: #4a5568;
+        text-align: justify;
       }
 
       .challenge-section {
@@ -188,14 +180,14 @@
         page-break-inside: avoid;
       }
 
+      /* ---------- Visual Proof (screen) ---------- */
       .visual-proof {
         margin: 1.5rem 0;
         padding: 1rem;
-        background: white;
+        background: #fff;
         border-radius: 8px;
         border: 2px solid #e2e8f0;
       }
-
       .visual-proof h4 {
         font-size: 1rem;
         color: #20504b;
@@ -212,54 +204,101 @@
         margin: 1.5rem 0;
       }
 
-      .image-placeholder {
+      .code-comparison {
         width: 100%;
-        min-height: 200px;
-        background: linear-gradient(45deg, #f8f9fa 25%, transparent 25%),
-          linear-gradient(-45deg, #f8f9fa 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, #f8f9fa 75%),
-          linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
-        background-size: 20px 20px;
-        background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-        border: 2px dashed #ccc;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #666;
-        font-weight: 500;
+      }
+      .code-comparison h4 {
         text-align: center;
-        padding: 0;
-        line-height: 1.5;
-        overflow: hidden;
+        color: #20504b;
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
       }
 
-      .image-placeholder img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 8px;
-      }
-
+      /* Code screenshots: hover magnifier */
       .code-placeholder {
         background: #1a202c;
         color: #e2e8f0;
-        min-height: 200px;
+        height: 280px;
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
-        border: 2px dashed #4a5568;
-        overflow: hidden;
-        padding: 0;
+        border: 2px solid #4a5568;
+        overflow: visible;
+        padding: 0.5rem;
+        cursor: zoom-in;
+        position: relative;
       }
-
       .code-placeholder img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        border-radius: 4px;
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 1;
+      }
+      .code-placeholder:hover {
+        overflow: visible;
+        z-index: 1000;
+      }
+      .code-placeholder:hover img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(3.8);
+        width: 100%;
+        height: auto;
+        max-width: none;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        border: 3px solid #20504b;
+        background: #1a202c;
+        cursor: zoom-out;
+        z-index: 1001;
+      }
+
+      /* UI screenshots (Challenge 2) — screen hover magnifier like Challenge 1 */
+      .image-placeholder {
+        width: 100%;
+        min-height: 250px;
+        background: #fff;
+        border: 2px solid #e2e8f0;
         border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        overflow: hidden;
+        position: relative;
+        cursor: zoom-in;
+      }
+      .image-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 1;
+      }
+      .image-placeholder:hover {
+        overflow: visible;
+      }
+      .image-placeholder:hover img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(3.8);
+        width: 100%;
+        height: auto;
+        max-width: none;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        border: 3px solid #20504b;
+        background: #1a202c;
+        cursor: zoom-out;
+        z-index: 1001;
       }
 
       .ui-screenshots {
@@ -269,6 +308,7 @@
         margin: 1.5rem 0;
       }
 
+      /* ---------- Final solution & CTA ---------- */
       .final-solution {
         background: linear-gradient(135deg, #20504b10, #2c3e5010);
         padding: 2rem;
@@ -280,37 +320,21 @@
       .gif-placeholder {
         width: 100%;
         height: 450px;
-        background: white;
+        background: #fff;
         border: 2px solid #20504b;
         border-radius: 12px;
         display: block;
         margin: 1rem 0;
         padding: 10px;
         overflow: hidden;
-        page-break-inside: avoid;
       }
-
       .gif-placeholder img {
         width: 100%;
         height: 100%;
         object-fit: contain;
         display: block;
-        background: white;
-        content: url('./APP_WORKING_ON_PHONE.gif');
-      }
-
-      @media print {
-        .gif-placeholder {
-          background: white !important;
-          border: 2px solid #20504b !important;
-        }
-        
-        .gif-placeholder img {
-          opacity: 1 !important;
-          visibility: visible !important;
-          display: block !important;
-          content: url('./APP_WORKING_ON_PHONE.png') !important;
-        }
+        background: #fff;
+        content: url("./APP_WORKING_ON_PHONE.gif");
       }
 
       .learnings-grid {
@@ -320,16 +344,13 @@
         margin: 1.5rem 0;
         page-break-inside: avoid;
       }
-
       .learning-box {
-        background: white;
+        background: #fff;
         padding: 1.5rem;
         border-radius: 12px;
         border-left: 5px solid #20504b;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        page-break-inside: avoid;
       }
-
       .learning-box h4 {
         font-size: 1.2rem;
         color: #2d3748;
@@ -338,22 +359,19 @@
       }
 
       .future-steps-list {
-        margin: 1rem 0;
+        margin: 1rem auto;
         padding-left: 0;
         list-style: none;
+        max-width: 80%;
+        text-align: center;
       }
-
       .future-steps-list li {
         padding: 0.5rem 0;
-        padding-left: 1.5rem;
-        position: relative;
         color: #4a5568;
+        position: relative;
       }
-
       .future-steps-list li::before {
-        content: "→";
-        position: absolute;
-        left: 0;
+        content: "→ ";
         color: #20504b;
         font-weight: bold;
       }
@@ -365,16 +383,14 @@
         background: linear-gradient(135deg, #20504b10, #2c3e5010);
         border-radius: 12px;
       }
-
       .cta-section h3 {
         margin-bottom: 1.5rem;
         text-align: center;
+        padding-left: 0;
       }
-
       .cta-section h3::before {
         display: none;
       }
-
       .cta-section h4 {
         margin: 1.5rem 0 0.5rem 0;
         color: #4a5568;
@@ -387,101 +403,324 @@
         justify-content: center;
         margin-top: 1.5rem;
       }
-
       .cta-button {
         padding: 1rem 2rem;
         border: none;
         border-radius: 8px;
         font-weight: 600;
         text-decoration: none;
-        color: white;
+        color: #fff;
         transition: all 0.3s ease;
         font-size: 1rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-
       .cta-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
       }
-
       .github-button {
         background: linear-gradient(135deg, #20504b, #2c3e50);
       }
-
       .demo-button {
         background: linear-gradient(135deg, #4a5568, #2d3748);
       }
 
+      /* ---------- Screen-only tweaks ---------- */
+      @media screen {
+        /* normalize inline-short code box (Challenge 3) */
+        .visual-proof .code-placeholder {
+          height: 280px !important;
+        }
+
+        /* Challenge 3 — reduce hover magnification */
+        .page:nth-of-type(3) .challenge-section .code-placeholder:hover img {
+          transform: translate(-50%, -50%) scale(2.5) !important;
+        }
+      }
+
+      /* ======================= PRINT (consolidated) ======================= */
       @media print {
+        /* colors + general page */
         body {
-          background: white;
+          background: #fff;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
-
         .page {
           width: 100%;
           min-height: 0;
           margin: 0;
           padding: 0.5in 0.6in;
           page-break-after: always;
-          box-sizing: border-box;
         }
-
         .page:last-child {
           page-break-after: avoid;
         }
 
-        h2, h3 {
-          page-break-after: avoid;
+        /* GIF fallback */
+        .gif-placeholder img {
+          content: url("./APP_WORKING_ON_PHONE.png") !important;
         }
 
-        .project-details-table,
-        .challenge-section,
-        .learning-box,
-        .visual-proof,
-        .final-solution,
-        .cta-section {
+        /* Named landscape page for Challenge 1 proof sheets */
+        @page visual-proof {
+          size: Letter landscape;
+          margin: 0.5in;
+        }
+
+        /* Hide the small "Visual Proof:" label globally to prevent orphaned labels by default */
+        .visual-proof > h4 {
+          display: none !important;
+        }
+
+        /* Stack side-by-side blocks vertically in print */
+        .visual-proof .side-by-side-container {
+          display: block !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* ---------- Challenge 1 (Page 2, first challenge): LANDSCAPE + anti-orphan ---------- */
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(1)
+          .visual-proof
+          .side-by-side-container
+          > div {
+          page: visual-proof;
+          page-break-before: always !important;
+          page-break-inside: avoid;
+          break-inside: avoid-page;
+          -webkit-column-break-inside: avoid;
+          -webkit-region-break-inside: avoid;
+          margin: 0 !important;
+          padding: 0 !important;
+          border: 0 !important;
+          background: transparent !important;
+          box-shadow: none !important;
+        }
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(1)
+          .visual-proof
+          .side-by-side-container
+          > div:first-child {
+          page-break-before: auto !important;
+        }
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(1)
+          .visual-proof
+          .side-by-side-container
+          > div
+          h4 {
+          page-break-inside: avoid;
+          break-inside: avoid-page;
+          margin: 0 0 0.1in 0 !important;
+          text-align: center !important;
+        }
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(1)
+          .visual-proof
+          .code-placeholder {
+          height: 6.1in !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          border: 0 !important;
+          background: transparent !important;
+          box-shadow: none !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          page-break-inside: avoid;
+          break-inside: avoid-page;
+        }
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(1)
+          .visual-proof
+          .code-placeholder
+          img {
+          width: 100% !important;
+          height: 100% !important;
+          max-width: none !important;
+          max-height: none !important;
+          object-fit: contain !important;
+          transform: none !important;
+          position: static !important;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+        }
+
+        /* ---------- Challenge 2 (Page 2, second challenge): PORTRAIT + anti-orphan ---------- */
+        /* Show label and keep with first image */
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(2)
+          .visual-proof
+          > h4 {
+          display: block !important;
+          page-break-after: avoid !important;
+          margin: 0 0 0.1in 0 !important;
+          text-align: center !important;
+          color: #111 !important;
+        }
+        /* Stack images vertically; first shares page with label, second starts new page */
+        .page:nth-of-type(2) .challenge-section:nth-of-type(2) .ui-screenshots {
+          display: block !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(2)
+          .ui-screenshots
+          > div:first-child {
+          page-break-before: auto !important;
+          page-break-inside: avoid;
+          break-inside: avoid-page;
+        }
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(2)
+          .ui-screenshots
+          > div
+          + div {
+          page-break-before: always !important;
+          page-break-inside: avoid;
+          break-inside: avoid-page;
+        }
+        /* Portrait image sizing with room for label */
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(2)
+          .image-placeholder {
+          height: 8.4in !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          border: 0 !important;
+          background: transparent !important;
+          box-shadow: none !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        .page:nth-of-type(2)
+          .challenge-section:nth-of-type(2)
+          .image-placeholder
+          img {
+          width: 100% !important;
+          height: 100% !important;
+          max-width: none !important;
+          max-height: none !important;
+          object-fit: contain !important;
+          transform: none !important;
+          position: static !important;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+        }
+
+        /* ---------- Challenge 3 (Page 3): PORTRAIT ---------- */
+        .page:nth-of-type(3)
+          .challenge-section
+          .visual-proof
+          .code-placeholder {
+          height: 8.6in !important;
+          border: 0 !important;
+          background: transparent !important;
+          box-shadow: none !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          page-break-inside: avoid;
+          break-inside: avoid-page;
+        }
+        .page:nth-of-type(3)
+          .challenge-section
+          .visual-proof
+          .code-placeholder
+          img {
+          width: 100% !important;
+          height: 100% !important;
+          max-width: none !important;
+          max-height: none !important;
+          object-fit: contain !important;
+          transform: none !important;
+          position: static !important;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+        }
+
+        /* Keep the learnings grid and CTA together if they fit on the last page */
+        .page:last-child .learnings-grid,
+        .page:last-child .cta-section {
           page-break-inside: avoid;
         }
       }
+
+      /* ---------- Compact LAST PAGE (fits everything on one page) ---------- */
+      .page:last-child {
+        padding: 0.4in 0.6in; /* slightly tighter than default */
+      }
+      .page:last-child h2 {
+        margin: 1rem 0 0.75rem 0; /* tighter heading */
+        padding-bottom: 0.5rem;
+      }
+      .page:last-child .learnings-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        margin: 0.75rem 0;
+      }
+      .page:last-child .learning-box {
+        padding: 0.75rem;
+        border-radius: 10px;
+        border-left-width: 4px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.04);
+      }
+      .page:last-child .learning-box h4 {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+      }
+      .page:last-child .learning-box p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      .page:last-child .cta-section {
+        margin-top: 1rem;
+        padding: 0.75rem;
+        border-radius: 10px;
+      }
+      .page:last-child .cta-section h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+      }
+      .page:last-child .cta-section h4 {
+        margin: 0.5rem 0 0.25rem 0;
+        font-size: 0.95rem;
+      }
+      .page:last-child .cta-buttons {
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .page:last-child .cta-button {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.9rem;
+        border-radius: 8px;
+      }
+
+      /* Print-specific compaction for last page */
+      @media print {
+        .page:last-child {
+          padding: 0.35in 0.5in;
+        }
+        .page:last-child .learning-box {
+          padding: 0.6rem;
+          border-left-width: 3px;
+        }
+        .page:last-child .cta-section {
+          padding: 0.6rem;
+        }
+        .page:last-child .cta-button {
+          padding: 0.45rem 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
     </style>
-    <script>
-      // Pause GIF animation when printing
-      window.addEventListener('beforeprint', function() {
-        const gifImage = document.querySelector('.gif-placeholder img');
-        if (gifImage && gifImage.src) {
-          // Store original src
-          gifImage.dataset.originalSrc = gifImage.src;
-          // Force browser to show first frame by reloading
-          const currentSrc = gifImage.src;
-          gifImage.src = '';
-          gifImage.src = currentSrc;
-        }
-      });
-
-      // Optional: Restore GIF after printing
-      window.addEventListener('afterprint', function() {
-        const gifImage = document.querySelector('.gif-placeholder img');
-        if (gifImage && gifImage.dataset.originalSrc) {
-          gifImage.src = gifImage.dataset.originalSrc;
-        }
-      });
-
-      // Also handle Ctrl+P keyboard shortcut
-      document.addEventListener('keydown', function(e) {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
-          const gifImage = document.querySelector('.gif-placeholder img');
-          if (gifImage && gifImage.src) {
-            gifImage.dataset.originalSrc = gifImage.src;
-            const currentSrc = gifImage.src;
-            gifImage.src = '';
-            gifImage.src = currentSrc;
-          }
-        }
-      });
-    </script>
   </head>
   <body>
     <!-- PAGE 1: INTRODUCTION -->
@@ -491,7 +730,6 @@
           <img
             src="./SCREENSHOT 1 MOVIEMOBS.png"
             alt="Screenshot welcome page to MovieMobs"
-            class="Welcome_page_image"
           />
         </div>
 
@@ -516,33 +754,28 @@
         </div>
       </div>
 
-      <table class="project-details-table">
-        <thead>
-          <tr>
-            <th>My Role</th>
-            <th>Duration</th>
-            <th>Tech Stack</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <strong>Sole Developer</strong><br /><br />
-              Responsible for setup, UI/UX, API integration, and debugging
-            </td>
-            <td>
-              <strong>3 Weeks</strong>
-            </td>
-            <td>
-              <strong>Angular 19</strong> (Standalone)<br />
-              <strong>Angular Material 19</strong><br />
-              <strong>TypeScript & RxJS</strong><br />
-              <strong>SCSS</strong><br />
-              <strong>REST API</strong>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- FLEXIBLE GRID FOR PROJECT DETAILS -->
+      <div class="project-details-grid">
+        <div class="detail-card">
+          <h3>My Role</h3>
+          <span class="detail-title">Sole Developer</span>
+          <p>Responsible for setup, UI/UX, API integration, and debugging</p>
+        </div>
+
+        <div class="detail-card">
+          <h3>Duration</h3>
+          <span class="detail-title">3 Weeks</span>
+        </div>
+
+        <div class="detail-card">
+          <h3>Tech Stack</h3>
+          <p>Angular 19 (Standalone)</p>
+          <p>Angular Material 19</p>
+          <p>TypeScript & RxJS</p>
+          <p>SCSS</p>
+          <p>REST API</p>
+        </div>
+      </div>
     </div>
 
     <!-- PAGE 2: PROCESS & CHALLENGES -->
@@ -577,8 +810,7 @@
               <div class="code-placeholder">
                 <img
                   src="./SCREENSHOT DEPRECATED MOVIEMOBS.png"
-                  alt="SCREENSHOT DEPRECATED LANGUAGE"
-                  class="SCREENSHOT_DEPRECATED"
+                  alt="Deprecated NgModule architecture example"
                 />
               </div>
             </div>
@@ -587,8 +819,7 @@
               <div class="code-placeholder">
                 <img
                   src="./SCREENSHOT NON-DEPRECATED JOBSEARCH.png"
-                  alt="SCREENSHOT NON-DEPRECATED LANGUAGE"
-                  class="SCREENSHOT_NONDEPRECATED"
+                  alt="Modern standalone component architecture"
                 />
               </div>
             </div>
@@ -612,16 +843,11 @@
             <div class="image-placeholder">
               <img
                 src="./SIGNUP FORM WORKING.png"
-                alt="SIGNUP FORM WORKING.png"
-                class="SCREENSHOT_WORKING_1"
+                alt="User Registration Form"
               />
             </div>
             <div class="image-placeholder">
-              <img
-                src="./LOGIN FORM WORKING.png"
-                alt="LOGIN FORM WORKING.png"
-                class="SCREENSHOT_WORKING_2"
-              />
+              <img src="./LOGIN FORM WORKING.png" alt="User Login Form" />
             </div>
           </div>
         </div>
@@ -647,8 +873,7 @@
           <div class="code-placeholder" style="height: 180px">
             <img
               src="./LOGIN FORM WORKING.png"
-              alt="LOGIN FORM WORKING.png"
-              class="SCREENSHOT_WORKING_2"
+              alt="API Integration demonstration"
             />
           </div>
         </div>
@@ -666,11 +891,14 @@
         <div class="gif-placeholder">
           <img
             src="./APP_WORKING_ON_PHONE.gif"
-            alt="User flow demo: welcome → register → login"
+            alt="MovieMobs user flow demonstration"
           />
         </div>
       </div>
+    </div>
 
+    <!-- PAGE 4: KEY LEARNINGS + CTA (compact page) -->
+    <div class="page">
       <h2>Key Learnings & Future Steps</h2>
 
       <div class="learnings-grid">
@@ -687,7 +915,9 @@
 
         <div class="learning-box">
           <h4>Future Steps</h4>
-          <p>The next steps are to implement the core movie features:</p>
+          <p style="text-align: center; margin-bottom: 0.5rem">
+            The next steps are to implement the core movie features:
+          </p>
           <ul class="future-steps-list">
             <li>A browsable movie gallery</li>
             <li>Detailed movie view pages</li>
@@ -710,7 +940,7 @@
             href="https://iecm-moviemobs-frontend-client-final.onrender.com/"
             class="cta-button demo-button"
             >Live Demo</a
-          >         
+          >
         </div>
         <h4>Backend</h4>
         <div class="cta-buttons">
@@ -723,9 +953,8 @@
             href="https://iecm-moviemobs-api.onrender.com/"
             class="cta-button demo-button"
             >Live Demo</a
-          >         
+          >
         </div>
-
       </div>
     </div>
   </body>
