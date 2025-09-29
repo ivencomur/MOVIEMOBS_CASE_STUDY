@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MovieMobs - Case Study</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #333;
+        background: #d9e1e5;
+      }
+
+      .page {
+        width: 8.5in;
+        min-height: 11in;
+        margin: 0 auto 0.5in auto;
+        padding: 0.5in 0.75in;
+        background: white;
+        page-break-after: always;
+        position: relative;
+      }
+
+      .page:last-child {
+        page-break-after: avoid;
+      }
+
+      /* Page 1 - Hero Section */
+      .hero-container {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .hero-image {
+        width: 100%;
+        max-width: 100%;
+        height: 300px;
+        background: linear-gradient(135deg, #2c3e50 0%, #20504b 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1rem;
+        margin: 0 auto 1rem;
+        border: 3px dashed #ccc;
+        text-align: center;
+        padding: 0;
+        font-weight: 500;
+        overflow: hidden;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+      }
+
+      .main-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+        letter-spacing: -1px;
+      }
+
+      .subtitle {
+        font-size: 1.3rem;
+        color: #718096;
+        margin-bottom: 2rem;
+        font-weight: 300;
+      }
+
+      .project-pitch {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #4a5568;
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        border-radius: 12px;
+        border-left: 5px solid #20504b;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .project-details-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 1rem 0 2rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        overflow: visible;
+      }
+
+      .project-details-table th {
+        background: #20504b;
+        color: white;
+        padding: 0.75rem 0.5rem;
+        font-weight: 600;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      .project-details-table th:first-child {
+        border-top-left-radius: 8px;
+      }
+
+      .project-details-table th:last-child {
+        border-top-right-radius: 8px;
+      }
+
+      .project-details-table td {
+        padding: 1rem 0.75rem;
+        text-align: center;
+        background: white;
+        border-bottom: 1px solid #e2e8f0;
+        font-size: 0.85rem;
+        color: #4a5568;
+        vertical-align: top;
+        line-height: 1.6;
+      }
+
+      .project-details-table td strong {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        color: #2d3748;
+      }
+
+      /* Content Pages */
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 2rem 0 1.5rem 0;
+        border-bottom: 3px solid #20504b;
+        padding-bottom: 0.75rem;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #4a5568;
+        margin: 2rem 0 1rem 0;
+        position: relative;
+      }
+
+      h3::before {
+        content: "";
+        position: absolute;
+        left: -1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 100%;
+        background: #20504b;
+        border-radius: 2px;
+      }
+
+      h3 {
+        padding-left: 1rem;
+      }
+
+      p {
+        margin-bottom: 1.25rem;
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #4a5568;
+      }
+
+      .challenge-section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        border-radius: 12px;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        page-break-inside: avoid;
+      }
+
+      .visual-proof {
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        border: 2px solid #e2e8f0;
+      }
+
+      .visual-proof h4 {
+        font-size: 1rem;
+        color: #20504b;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .side-by-side-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .image-placeholder {
+        width: 100%;
+        min-height: 200px;
+        background: linear-gradient(45deg, #f8f9fa 25%, transparent 25%),
+          linear-gradient(-45deg, #f8f9fa 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #f8f9fa 75%),
+          linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        border: 2px dashed #ccc;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-weight: 500;
+        text-align: center;
+        padding: 0;
+        line-height: 1.5;
+        overflow: hidden;
+      }
+
+      .image-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .code-placeholder {
+        background: #1a202c;
+        color: #e2e8f0;
+        min-height: 200px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+        border: 2px dashed #4a5568;
+        overflow: hidden;
+        padding: 0;
+      }
+
+      .code-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .ui-screenshots {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .final-solution {
+        background: linear-gradient(135deg, #20504b10, #2c3e5010);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid #20504b30;
+        margin: 2rem 0;
+      }
+
+      .gif-placeholder {
+        width: 100%;
+        height: 450px;
+        background: white;
+        border: 2px solid #20504b;
+        border-radius: 12px;
+        display: block;
+        margin: 1rem 0;
+        padding: 10px;
+        overflow: hidden;
+        page-break-inside: avoid;
+      }
+
+      .gif-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        background: white;
+        content: url('./APP_WORKING_ON_PHONE.gif');
+      }
+
+      @media print {
+        .gif-placeholder {
+          background: white !important;
+          border: 2px solid #20504b !important;
+        }
+        
+        .gif-placeholder img {
+          opacity: 1 !important;
+          visibility: visible !important;
+          display: block !important;
+          content: url('./APP_WORKING_ON_PHONE.png') !important;
+        }
+      }
+
+      .learnings-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+        page-break-inside: avoid;
+      }
+
+      .learning-box {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        border-left: 5px solid #20504b;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        page-break-inside: avoid;
+      }
+
+      .learning-box h4 {
+        font-size: 1.2rem;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .future-steps-list {
+        margin: 1rem 0;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      .future-steps-list li {
+        padding: 0.5rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+        color: #4a5568;
+      }
+
+      .future-steps-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #20504b;
+        font-weight: bold;
+      }
+
+      .cta-section {
+        text-align: center;
+        margin-top: 3rem;
+        padding: 2rem;
+        background: linear-gradient(135deg, #20504b10, #2c3e5010);
+        border-radius: 12px;
+      }
+
+      .cta-section h3 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .cta-section h3::before {
+        display: none;
+      }
+
+      .cta-section h4 {
+        margin: 1.5rem 0 0.5rem 0;
+        color: #4a5568;
+        font-size: 1.1rem;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 1.5rem;
+      }
+
+      .cta-button {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        color: white;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .github-button {
+        background: linear-gradient(135deg, #20504b, #2c3e50);
+      }
+
+      .demo-button {
+        background: linear-gradient(135deg, #4a5568, #2d3748);
+      }
+
+      @media print {
+        body {
+          background: white;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .page {
+          width: 100%;
+          min-height: 0;
+          margin: 0;
+          padding: 0.5in 0.6in;
+          page-break-after: always;
+          box-sizing: border-box;
+        }
+
+        .page:last-child {
+          page-break-after: avoid;
+        }
+
+        h2, h3 {
+          page-break-after: avoid;
+        }
+
+        .project-details-table,
+        .challenge-section,
+        .learning-box,
+        .visual-proof,
+        .final-solution,
+        .cta-section {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+    <script>
+      // Pause GIF animation when printing
+      window.addEventListener('beforeprint', function() {
+        const gifImage = document.querySelector('.gif-placeholder img');
+        if (gifImage && gifImage.src) {
+          // Store original src
+          gifImage.dataset.originalSrc = gifImage.src;
+          // Force browser to show first frame by reloading
+          const currentSrc = gifImage.src;
+          gifImage.src = '';
+          gifImage.src = currentSrc;
+        }
+      });
+
+      // Optional: Restore GIF after printing
+      window.addEventListener('afterprint', function() {
+        const gifImage = document.querySelector('.gif-placeholder img');
+        if (gifImage && gifImage.dataset.originalSrc) {
+          gifImage.src = gifImage.dataset.originalSrc;
+        }
+      });
+
+      // Also handle Ctrl+P keyboard shortcut
+      document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+          const gifImage = document.querySelector('.gif-placeholder img');
+          if (gifImage && gifImage.src) {
+            gifImage.dataset.originalSrc = gifImage.src;
+            const currentSrc = gifImage.src;
+            gifImage.src = '';
+            gifImage.src = currentSrc;
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <!-- PAGE 1: INTRODUCTION -->
+    <div class="page">
+      <div class="hero-container">
+        <div class="hero-image">
+          <img
+            src="./SCREENSHOT 1 MOVIEMOBS.png"
+            alt="Screenshot welcome page to MovieMobs"
+            class="Welcome_page_image"
+          />
+        </div>
+
+        <h1 class="main-title">MovieMobs</h1>
+        <p class="subtitle">
+          A Case Study in Modernizing an Angular Application
+        </p>
+
+        <div class="project-pitch">
+          <strong>Project Pitch:</strong><br /><br />
+          Along my training at CareerFoundry.com I was assigned several tasks
+          that aimed at the final building of an app related to movies, under
+          the concept of "MyFlix" which is evidently related to other commercial
+          movie platforms we are familiar with, worldwide. I took the liberty to
+          rename it "MovieMobs", re-design its frameworks and visuals, and try
+          my best, as a full-stack developer in training, to obtain a modern
+          Angular 19 application, by independently solving complex issues caused
+          by outdated learning materials and framework evolution. This project
+          showcases my acquired expertise in Angular and Angular Material, as
+          well as my ability to research, adapt, and deliver what I consider
+          ultimately resilient, production-ready solutions.
+        </div>
+      </div>
+
+      <table class="project-details-table">
+        <thead>
+          <tr>
+            <th>My Role</th>
+            <th>Duration</th>
+            <th>Tech Stack</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Sole Developer</strong><br /><br />
+              Responsible for setup, UI/UX, API integration, and debugging
+            </td>
+            <td>
+              <strong>3 Weeks</strong>
+            </td>
+            <td>
+              <strong>Angular 19</strong> (Standalone)<br />
+              <strong>Angular Material 19</strong><br />
+              <strong>TypeScript & RxJS</strong><br />
+              <strong>SCSS</strong><br />
+              <strong>REST API</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGE 2: PROCESS & CHALLENGES -->
+    <div class="page">
+      <h2>The Process & Challenges</h2>
+      <p>
+        The primary challenge was that the course materials were based on a
+        previous version of Angular. I chose to build the application using the
+        current standard, Angular 19. This decision created crucial learning
+        opportunities that reflect real-world development work.
+      </p>
+
+      <div class="challenge-section">
+        <h3>
+          Challenge 1: Architecture: From Legacy NgModule to Modern Standalone
+          Components
+        </h3>
+        <p>
+          The legacy materials used the now-outdated NgModule architecture. To
+          build a scalable and maintainable app, I refactored the entire
+          structure to use Angular 19's modern standalone component
+          architecture. This involved researching the latest documentation and
+          ensuring every component was modular and self-contained, resulting in
+          a scalable, maintainable codebase ready for future enhancements.
+        </p>
+
+        <div class="visual-proof">
+          <h4>Visual Proof:</h4>
+          <div class="side-by-side-container">
+            <div>
+              <h4>Before (Legacy NgModule)</h4>
+              <div class="code-placeholder">
+                <img
+                  src="./SCREENSHOT DEPRECATED MOVIEMOBS.png"
+                  alt="SCREENSHOT DEPRECATED LANGUAGE"
+                  class="SCREENSHOT_DEPRECATED"
+                />
+              </div>
+            </div>
+            <div>
+              <h4>After (My Solution)</h4>
+              <div class="code-placeholder">
+                <img
+                  src="./SCREENSHOT NON-DEPRECATED JOBSEARCH.png"
+                  alt="SCREENSHOT NON-DEPRECATED LANGUAGE"
+                  class="SCREENSHOT_NONDEPRECATED"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-section">
+        <h3>Challenge 2: UI: Modernizing Angular Material Theming</h3>
+        <p>
+          Angular Material's theming syntax changed dramatically between
+          versions, and the old mat.define-palette() function was deprecated. I
+          studied the official migration guides and iteratively debugged the
+          SCSS to implement a custom theme using the new mat.theme() function,
+          resulting in a clean UI consistent with Material Design 3.
+        </p>
+
+        <div class="visual-proof">
+          <h4>Visual Proof:</h4>
+          <div class="ui-screenshots">
+            <div class="image-placeholder">
+              <img
+                src="./SIGNUP FORM WORKING.png"
+                alt="SIGNUP FORM WORKING.png"
+                class="SCREENSHOT_WORKING_1"
+              />
+            </div>
+            <div class="image-placeholder">
+              <img
+                src="./LOGIN FORM WORKING.png"
+                alt="LOGIN FORM WORKING.png"
+                class="SCREENSHOT_WORKING_2"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 3: SOLUTION & REFLECTIONS -->
+    <div class="page">
+      <div class="challenge-section">
+        <h3>Challenge 3: API Integration & Asynchronous Handling</h3>
+        <p>
+          Runtime errors arose from changes in how animation providers were
+          loaded and mismatches between the API's data fields and the examples.
+          I engineered a robust solution by creating a reusable API service
+          (fetch-api-data.service.ts) that uses RxJS to manage all asynchronous
+          logic and TypeScript interfaces to ensure type-safe data handling from
+          the backend. This resulted in stable backend communication with robust
+          error handling.
+        </p>
+
+        <div class="visual-proof">
+          <h4>Visual Proof:</h4>
+          <div class="code-placeholder" style="height: 180px">
+            <img
+              src="./LOGIN FORM WORKING.png"
+              alt="LOGIN FORM WORKING.png"
+              class="SCREENSHOT_WORKING_2"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="final-solution">
+        <h2>The Final Solution</h2>
+        <p>
+          The result is a fully functional and modern Angular application
+          featuring secure user registration and login with session persistence.
+          It is built on a strong, modular foundation that is ready for future
+          feature development.
+        </p>
+
+        <div class="gif-placeholder">
+          <img
+            src="./APP_WORKING_ON_PHONE.gif"
+            alt="User flow demo: welcome → register → login"
+          />
+        </div>
+      </div>
+
+      <h2>Key Learnings & Future Steps</h2>
+
+      <div class="learnings-grid">
+        <div class="learning-box">
+          <h4>Key Learnings</h4>
+          <p>
+            This project was a critical lesson in the rapid evolution of web
+            development. It strengthened my resilience and problem-solving
+            mindset, proving that I can successfully deliver a modern
+            application even when faced with outdated resources and
+            documentation.
+          </p>
+        </div>
+
+        <div class="learning-box">
+          <h4>Future Steps</h4>
+          <p>The next steps are to implement the core movie features:</p>
+          <ul class="future-steps-list">
+            <li>A browsable movie gallery</li>
+            <li>Detailed movie view pages</li>
+            <li>User-specific favorite lists</li>
+            <li>Deployment to cloud platform with CI/CD pipeline</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h3>View the Project</h3>
+        <h4>Frontend</h4>
+        <div class="cta-buttons">
+          <a
+            href="https://github.com/ivencomur/MOVIEMOBS-FINAL-VERSION"
+            class="cta-button github-button"
+            >View on GitHub</a
+          >
+          <a
+            href="https://iecm-moviemobs-frontend-client-final.onrender.com/"
+            class="cta-button demo-button"
+            >Live Demo</a
+          >         
+        </div>
+        <h4>Backend</h4>
+        <div class="cta-buttons">
+          <a
+            href="https://github.com/ivencomur/iecm_movies_api/tree/ACHIEVEMENT-6-WITH-README-FOR-PORTFOLIO"
+            class="cta-button github-button"
+            >View on GitHub</a
+          >
+          <a
+            href="https://iecm-moviemobs-api.onrender.com/"
+            class="cta-button demo-button"
+            >Live Demo</a
+          >         
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>
